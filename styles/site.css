@@ -419,6 +419,10 @@ h3 {
   font-size: clamp(1.15rem, 1.8vw, 1.3rem);
 }
 
+.intro-copy--wide {
+  max-width: 58rem;
+}
+
 .intro-copy + .intro-copy {
   margin-top: 1rem;
 }
