@@ -44,6 +44,7 @@
   --focus: #1f67b2;
   --shadow: 0 16px 44px rgba(20, 56, 92, 0.1);
   --max-width: 75rem;
+  --site-container-width: min(calc(100% - 2rem), var(--max-width));
   --tech-control-size: 0.82rem;
   --space-label-title: 0.875rem;
   --space-title-copy: 1.375rem;
@@ -161,18 +162,24 @@ textarea {
   transform: translateY(0);
 }
 
+.banner-frame,
+.banner-transition,
+main {
+  width: var(--site-container-width);
+  margin-inline: auto;
+}
+
 .banner-region {
   background: var(--bg);
 }
 
 .banner-frame {
   position: relative;
-  width: min(calc(100% - 2rem), var(--max-width));
-  margin-inline: auto;
   background: var(--banner-edge);
 }
 
 .banner-image {
+  display: block;
   width: 100%;
   height: auto;
   aspect-ratio: 1794 / 877;
@@ -216,10 +223,8 @@ textarea {
 
 .banner-transition {
   position: relative;
-  width: min(calc(100% - 2rem), var(--max-width));
   min-height: 10rem;
   margin-top: -1px;
-  margin-inline: auto;
   padding: 2.5rem 0 1.25rem;
   background: linear-gradient(180deg, var(--banner-edge) 0%, color-mix(in srgb, var(--banner-edge) 66%, var(--bg)) 38%, var(--bg) 100%);
 }
@@ -335,8 +340,6 @@ textarea {
 
 main {
   display: block;
-  width: min(calc(100% - 2rem), var(--max-width));
-  margin-inline: auto;
 }
 
 .content-wrap {
