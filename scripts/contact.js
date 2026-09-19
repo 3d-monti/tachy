@@ -113,8 +113,27 @@
         }
       }
 
-      if (new URLSearchParams(window.location.search).get("motif") === "test-ferme" && subject && closedTestOption) {
+      var parameters = new URLSearchParams(window.location.search);
+      var prefilledSubject = parameters.get("subject");
+      var prefilledMessage = parameters.get("message");
+
+      if (parameters.get("motif") === "test-ferme" && subject && closedTestOption) {
         subject.value = closedTestOption.value;
+      } else if (prefilledSubject && subject) {
+        var matchingSubject = Array.prototype.find.call(subject.options, function (option) {
+          return option.value === prefilledSubject || option.textContent === prefilledSubject;
+        });
+        if (!matchingSubject) {
+          matchingSubject = new Option(prefilledSubject, prefilledSubject);
+          subject.add(matchingSubject);
+        }
+        subject.value = matchingSubject.value;
+      }
+
+      if (prefilledMessage && message) {
+        var maximumLength = Number(message.maxLength) || 4000;
+        message.value = prefilledMessage.slice(0, maximumLength);
+        scheduleMessageFit();
       }
 
       updateSubjectState();
